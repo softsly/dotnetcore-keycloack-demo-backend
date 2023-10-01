@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "http://localhost:8080/auth/realms/MyRealm";
-        options.Audience = "myclient";
+        options.Authority = "https://keycloak-sso.apps.fg-openshift.phn9.p2.openshiftapps.com/auth/realms/fraguadotnetdemo";
+        options.Audience = "aud";              
+                  
     });
 
 builder.Services.AddControllers();
@@ -29,10 +30,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); //JWT
+
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseAuthentication(); //JWT
+
 
 app.Run();

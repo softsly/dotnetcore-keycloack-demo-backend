@@ -8,6 +8,7 @@ namespace DotnetKeycloakSimpleTest
     public class AuthenticatedServiceController : ControllerBase
     {
         [HttpGet]
+        // [Authorize(Roles = "user")]
         [Authorize]
         public string Get()
         {
